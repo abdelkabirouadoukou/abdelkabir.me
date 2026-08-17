@@ -1,5 +1,6 @@
 import { Island, type LoaderArgs, type RouteProps } from "@thexjs/core";
 import ScrollSpy from "../components/scroll-spy";
+import VercelAnalytics from "../components/vercel-analytics";
 import About from "../components/sections/About";
 import Building from "../components/sections/Building";
 import Hero from "../components/sections/Hero";
@@ -11,7 +12,7 @@ import { type GitHubData, fetchGithubData } from "../lib/github";
 
 export const mode = "server";
 
-export const islands = { ScrollSpy };
+export const islands = { ScrollSpy, VercelAnalytics };
 
 export async function loader(_args: LoaderArgs): Promise<Record<string, unknown>> {
   return { github: await fetchGithubData() };
@@ -24,6 +25,10 @@ export default function Home({ loaderData }: RouteProps) {
     <div>
       <Island name="ScrollSpy" client="load">
         <ScrollSpy />
+      </Island>
+
+      <Island name="VercelAnalytics" client="load">
+        <VercelAnalytics />
       </Island>
 
       <Hero github={github} />
