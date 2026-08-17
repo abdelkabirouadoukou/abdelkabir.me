@@ -18,6 +18,9 @@ data/
 # Compiled styles
 public/styles.css
 
+# Generated route manifest (written in dev mode)
+src/x-routes.ts
+
 # Vercel
 .vercel/
 
