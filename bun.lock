@@ -5,14 +5,14 @@
     "": {
       "name": "thexjs-app",
       "dependencies": {
-        "@thexjs/core": "^1.3.0",
+        "@thexjs/core": "^1.3.1",
         "@vercel/analytics": "^2.0.1",
         "react": "^19.1.0",
         "react-dom": "^19.1.0",
       },
       "devDependencies": {
         "@tailwindcss/cli": "^4.3.3",
-        "@thexjs/adapter-vercel": "^1.0.7",
+        "@thexjs/adapter-vercel": "^1.0.8",
         "@thexjs/cli": "^1.1.1",
         "@types/bun": "latest",
         "@types/react": "^19.1.0",
@@ -91,11 +91,11 @@
 
     "@tailwindcss/oxide-win32-x64-msvc": ["@tailwindcss/oxide-win32-x64-msvc@4.3.3", "", { "os": "win32", "cpu": "x64" }, "sha512-yJ0pwIVc/nYeGoV02WtsN8KYyLQv7kyI2wDnkezyJlGGjkd4QLwDGAwl47YpPJeuI0M0ObaXGSPjvWDPeTPggw=="],
 
-    "@thexjs/adapter-vercel": ["@thexjs/adapter-vercel@1.0.7", "", { "dependencies": { "@thexjs/core": "^1.3.0", "react": "^19.0.0" } }, "sha512-WQqxWKIEUV6kHFYRUTTFNsjWDJm0ZxfW2DWwvG+KgXbtzlePXFMeholYPcHrcwKUoV+0XzDYJlR2WR6ESmiACg=="],
+    "@thexjs/adapter-vercel": ["@thexjs/adapter-vercel@1.0.8", "", { "dependencies": { "@thexjs/core": "^1.3.1", "react": "^19.0.0" } }, "sha512-6koTaPNsyZMxWOOqffb1NoLDfKL5jTIsve2TKRTxKWz0CMOA7jVFyMz2ixiyyt+TkC1tbEIKWVhpIDpmUPHU/w=="],
 
     "@thexjs/cli": ["@thexjs/cli@1.1.1", "", { "dependencies": { "@thexjs/core": "^1.2.4" }, "peerDependencies": { "@thexjs/adapter-vercel": "^1.0.5" }, "optionalPeers": ["@thexjs/adapter-vercel"], "bin": { "x": "dist/index.js" } }, "sha512-ymiHdSyBXPB1wKOEbpkrBE+5PmN9Nqw4etAbvUz4guYEaV5cE7eMzDI5PGov7hgpZrw+1pqx5f5AqB+E3bzJSA=="],
 
-    "@thexjs/core": ["@thexjs/core@1.3.0", "", { "peerDependencies": { "react": "^19.0.0", "react-dom": "^19.0.0" } }, "sha512-7OGm/Eq3LUohHbnD1wsh3/bt5dyL/95xVslpvOrBtEpou8B8Lt4WqKv0QwBztGxBMNIYWnK4/MWBXjvuoVm7tQ=="],
+    "@thexjs/core": ["@thexjs/core@1.3.1", "", { "peerDependencies": { "react": "^19.0.0", "react-dom": "^19.0.0" } }, "sha512-6g9yKhmu+sm4NVIRRTXiwygXv8jkjuNc80b6Capw4rHZBfp9yukxr8YUBJySMsYbqKMWsHXcnKYvhMzXEPykvQ=="],
 
     "@types/bun": ["@types/bun@1.3.14", "", { "dependencies": { "bun-types": "1.3.14" } }, "sha512-h1hFqFVcvAvD9j9K7ZW7vd82aSA+rTdznZa+5bwvCwqSB1jmmfLcbIWhOLx1/+boy/xmjgCs/OMUL8hRJSmnPw=="],
 
@@ -194,6 +194,8 @@
     "@tailwindcss/oxide-wasm32-wasi/@tybys/wasm-util": ["@tybys/wasm-util@0.10.3", "", { "dependencies": { "tslib": "^2.4.0" }, "bundled": true }, "sha512-F3fo1MYrRJYL3zER0OUOmkutjr1Vp23m7OsSgp7nq4SP6OqX6C/56XFIPAl5bt3zaBRjmW7SGz3u/6LwFpYcOg=="],
 
     "@tailwindcss/oxide-wasm32-wasi/tslib": ["tslib@2.8.1", "", { "bundled": true }, "sha512-oJFu94HQb+KVduSUQL7wnpmqnfmLsOA/nAh6b6EH0wCEoK0/mPeXU6c3wKDV83MkOuHPRHtSXKKU99IBazS/2w=="],
+
+    "@thexjs/cli/@thexjs/core": ["@thexjs/core@1.3.0", "", { "peerDependencies": { "react": "^19.0.0", "react-dom": "^19.0.0" } }, "sha512-7OGm/Eq3LUohHbnD1wsh3/bt5dyL/95xVslpvOrBtEpou8B8Lt4WqKv0QwBztGxBMNIYWnK4/MWBXjvuoVm7tQ=="],
 
     "lightningcss/detect-libc": ["detect-libc@2.1.2", "", {}, "sha512-Btj2BOOO83o3WyH59e8MgXsxEQVcarkUOpEYrubB0urwnN10yQ364rsiByU11nZlqWYZm05i/of7io4mzihBtQ=="],
   }

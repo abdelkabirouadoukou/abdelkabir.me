@@ -9,14 +9,14 @@
     "vercel-build": "x build --adapter vercel"
   },
   "dependencies": {
-    "@thexjs/core": "^1.3.0",
+    "@thexjs/core": "^1.3.1",
     "@vercel/analytics": "^2.0.1",
     "react": "^19.1.0",
     "react-dom": "^19.1.0"
   },
   "devDependencies": {
     "@tailwindcss/cli": "^4.3.3",
-    "@thexjs/adapter-vercel": "^1.0.7",
+    "@thexjs/adapter-vercel": "^1.0.8",
     "@thexjs/cli": "^1.1.1",
     "@types/bun": "latest",
     "@types/react": "^19.1.0",
