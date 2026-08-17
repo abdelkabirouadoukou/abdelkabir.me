@@ -6,7 +6,7 @@ node_modules/
 dist/
 
 # Runtime data (SQLite, uploads)
-data/
+/data/
 *.db
 *.db-journal
 
