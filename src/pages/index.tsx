@@ -110,10 +110,10 @@ export default function Home() {
                 <p className="tagline">
                   Searching for logic in a world of <u>syntax errors</u>.
                 </p>
-                <p className="role">
+                {/* <p className="role">
                   Full-stack developer and creator of <a href={X_REPO} target="_blank" rel="noopener noreferrer" data-no-nav>@thexjs</a>.
                   I ship web platforms, build tooling from scratch, and take systems apart to see how they tick.
-                </p>
+                </p> */}
               </div>
               <div className="hero-side" data-intro style={v(4)}>
                 <div className="actions">
