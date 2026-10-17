@@ -6,7 +6,7 @@
     "dev": "x dev",
     "build": "x build",
     "start": "x start",
-    "build:vercel": "x build --adapter vercel"
+    "vercel-build": "x build --adapter vercel"
   },
   "dependencies": {
     "@tailwindcss/cli": "^4.3.3",
