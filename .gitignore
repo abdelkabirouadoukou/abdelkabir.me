@@ -6,7 +6,7 @@ node_modules/
 dist/
 
 # Runtime data (SQLite, uploads)
-/data/
+data/
 *.db
 *.db-journal
 
@@ -16,10 +16,7 @@ dist/
 .env.*.local
 
 # Compiled styles
-public/styles.css
-
-# Generated route manifest (written in dev mode)
-src/x-routes.ts
+# (public/styles.css is committed here as a fallback)
 
 # Vercel
 .vercel/
