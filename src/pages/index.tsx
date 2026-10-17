@@ -5,12 +5,15 @@ import { HeroName } from "../components/HeroName";
 import { DotField } from "../components/DotField";
 import { ProjectIndex } from "../components/ProjectIndex";
 import { CollatzLab } from "../components/CollatzLab";
+import { Logo } from "../components/Logo";
 import { ORBIT, PEAK, SECTIONS, STEPS_TOTAL, fmt, nOf } from "../lib/collatz";
+import { SITE } from "../lib/site";
 
 export const islands = { Choreo, HeroName, DotField, ProjectIndex, CollatzLab };
 
-const GH = "https://github.com/abdelkabirouadoukou";
-const X_REPO = `${GH}/x`;
+const GH = SITE.github;
+const X_REPO = SITE.xRepo;
+const MAIL = SITE.email;
 const LATEST = `${GH}/CVE-2026-31431-Analysis-and-Fix`;
 const v = (i: number) => ({ "--i": i } as CSSProperties);
 
@@ -62,11 +65,12 @@ export default function Home() {
 
       {/* ---------------------------------------------------------- nav */}
       <header className="nav">
-        <a className="mark" href="#top" data-no-nav aria-label="Abdelkabir Ouadoukou, back to top">ak</a>
+        <a className="mark" href="#top" data-no-nav aria-label="Abdelkabir Ouadoukou, back to top"><Logo /></a>
         <nav className="nav-links" aria-label="Sections">
           {SECTIONS.slice(1, 7).map((s, i) => (
             <a key={s.id} href={`#${s.id}`} data-no-nav><i>0{i + 1}</i>{s.label}</a>
           ))}
+          <a href="#contact" data-no-nav>contact</a>
           <a href={GH} target="_blank" rel="noopener noreferrer" data-no-nav>github ↗</a>
         </nav>
         <details className="menu">
@@ -75,6 +79,7 @@ export default function Home() {
             {SECTIONS.slice(1, 7).map((s, i) => (
               <a key={s.id} href={`#${s.id}`} data-no-nav><i>0{i + 1}</i>{s.label}</a>
             ))}
+            <a href="#contact" data-no-nav><i>07</i>contact</a>
           </nav>
         </details>
       </header>
@@ -101,9 +106,15 @@ export default function Home() {
             </Island>
 
             <div className="hero-row">
-              <p className="tagline" data-intro style={v(3)}>
-                Searching for logic in a world of <u>syntax errors</u>.
-              </p>
+              <div className="hero-copy" data-intro style={v(3)}>
+                <p className="tagline">
+                  Searching for logic in a world of <u>syntax errors</u>.
+                </p>
+                <p className="role">
+                  Full-stack developer and creator of <a href={X_REPO} target="_blank" rel="noopener noreferrer" data-no-nav>@thexjs</a>.
+                  I ship web platforms, build tooling from scratch, and take systems apart to see how they tick.
+                </p>
+              </div>
               <div className="hero-side" data-intro style={v(4)}>
                 <div className="actions">
                   <span className="magnet" data-magnet><a className="btn pri" href="#projects" data-no-nav>View projects ↓</a></span>
@@ -116,9 +127,9 @@ export default function Home() {
             </div>
 
             <div className="specs" data-intro style={v(5)}>
-              <div className="spec"><b data-count="82">82</b><span>repos</span></div>
-              <div className="spec"><b data-count="148">148</b><span>followers</span></div>
               <div className="spec"><b data-count="8">8</b><span>@thexjs packages</span></div>
+              <div className="spec"><b data-count="1">1</b><span>client platform live</span></div>
+              <div className="spec"><b data-count="1">1</b><span>kernel CVE written up</span></div>
               <div className="spec"><b data-count={String(STEPS_TOTAL)}>{STEPS_TOTAL}</b><span>steps from 27 to 1</span></div>
             </div>
           </div>
@@ -210,6 +221,9 @@ export default function Home() {
             <Island name="ProjectIndex" client="visible">
               <ProjectIndex />
             </Island>
+            <a className="more" href={`${GH}?tab=repositories`} target="_blank" rel="noopener noreferrer" data-no-nav data-reveal>
+              More on GitHub: every repository <span aria-hidden="true">↗</span>
+            </a>
           </div>
         </section>
 
@@ -290,8 +304,18 @@ export default function Home() {
           </p>
           <h2 data-lines>Every orbit <em>ends at 1.</em> Follow the build.</h2>
           <div className="actions">
-            <span className="magnet" data-magnet><a className="btn pri" href={GH} target="_blank" rel="noopener noreferrer" data-no-nav>github.com/abdelkabirouadoukou ↗</a></span>
+            <span className="magnet" data-magnet><a className="btn pri" href={`mailto:${MAIL}`} data-no-nav>Say hello ↗</a></span>
+            <span className="magnet" data-magnet><a className="btn" href={GH} target="_blank" rel="noopener noreferrer" data-no-nav>GitHub ↗</a></span>
             <span className="magnet" data-magnet><a className="btn" href={X_REPO} target="_blank" rel="noopener noreferrer" data-no-nav>read @thexjs ↗</a></span>
+          </div>
+
+          <div className="contact" id="contact">
+            <p className="eyebrow">Contact</p>
+            <div className="contact-row">
+              <a className="mail" href={`mailto:${MAIL}`} data-no-nav data-cursor="write ↗">{MAIL}</a>
+              <button type="button" className="copy" data-copy={MAIL} aria-label="Copy email address">copy</button>
+            </div>
+            <p className="contact-note">Open to client projects, collaborations and interesting problems.</p>
           </div>
 
           <div className="foot-grid">
@@ -299,6 +323,7 @@ export default function Home() {
               <h3>Navigate</h3>
               <ul>
                 {SECTIONS.slice(1, 7).map((s) => <li key={s.id}><a href={`#${s.id}`} data-no-nav>{s.label[0].toUpperCase() + s.label.slice(1)}</a></li>)}
+                <li><a href="#contact" data-no-nav>Contact</a></li>
                 <li><a href="#top" data-no-nav>↑ Back to 27</a></li>
               </ul>
             </div>

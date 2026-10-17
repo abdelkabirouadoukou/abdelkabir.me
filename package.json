@@ -4,9 +4,10 @@
   "type": "module",
   "scripts": {
     "dev": "x dev",
-    "build": "x build",
+    "seo": "bun scripts/seo.ts",
+    "build": "bun run seo && x build",
     "start": "x start",
-    "vercel-build": "x build --adapter vercel"
+    "vercel-build": "bun run seo && x build --adapter vercel"
   },
   "dependencies": {
     "@tailwindcss/cli": "^4.3.3",

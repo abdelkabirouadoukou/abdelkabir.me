@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<title>og</title>
+<!--FONTS--><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,200..800&family=Instrument+Serif:ital@0;1&family=Geist+Mono:wght@400;500&display=swap"><!--/FONTS-->
+<style>
+  :root{--sand:#eee6d3;--ink:#12100d;--blue:#2a39e6;--saffron:#ffb300}
+  *{box-sizing:border-box;margin:0}
+  html,body{width:1200px;height:630px;background:var(--sand);color:var(--ink);overflow:hidden}
+  body{position:relative;font-family:"Bricolage Grotesque",Helvetica,Arial,sans-serif}
+  .dots{position:absolute;inset:0;background-image:radial-gradient(circle,rgba(18,16,13,.16) 1.6px,transparent 1.7px);background-size:30px 30px;background-position:15px 15px}
+  .logo{position:absolute;left:58px;top:40px;width:108px;height:108px}
+  .url{position:absolute;right:64px;top:70px;font:500 22px "Geist Mono",monospace;letter-spacing:.06em;text-transform:uppercase}
+  h1{position:absolute;left:62px;top:168px;font-weight:760;font-size:124px;line-height:.92;letter-spacing:-.035em;font-variation-settings:"wdth" 94}
+  h1 span{display:block}h1 span+span{padding-left:80px}
+  .tag{position:absolute;left:64px;top:470px;max-width:540px;font:italic 400 44px/1.08 "Instrument Serif",Georgia,serif;letter-spacing:-.01em}
+  .tag u{text-decoration:underline wavy var(--blue);text-decoration-thickness:3px;text-underline-offset:.16em}
+  svg.orbit{position:absolute;left:660px;bottom:0;width:540px;height:240px}
+  .cap{position:absolute;right:64px;bottom:34px;font:500 17px "Geist Mono",monospace;letter-spacing:.06em;text-transform:uppercase;opacity:.75}
+</style></head>
+<body>
+<div class="dots"></div>
+<svg class="logo" viewBox="0 0 100 100" fill="none"><g stroke="#12100d" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"><circle cx="31" cy="62" r="15.5"/><path d="M46.5 46.5V77.5"/><path d="M63 27V77.5"/><path d="M82 48 63 63 83 77.5"/></g><circle cx="63" cy="24" r="8" fill="#ffb300"/></svg>
+<div class="url">abdelkabir.me</div>
+<h1><span>Abdelkabir</span><span>Ouadoukou</span></h1>
+<p class="tag">Searching for logic in a world of <u>syntax errors</u>.</p>
+<svg class="orbit" id="orbit" viewBox="0 0 540 240"></svg>
+<div class="cap">solo dev · @thexjs · Marrakesh</div>
+<script>
+  // the real Collatz orbit of 27 (111 steps, peak 9,232), log scale, drawn left→right
+  const o=[27];let n=27;while(n!==1){n=n%2?3*n+1:n/2;o.push(n)}
+  const pk=Math.max(...o),W=540,H=240,x0=40,x1=W-64,y0=40,y1=H-78;
+  const X=i=>x0+(i/(o.length-1))*(x1-x0),Y=v=>y1-(Math.log(v)/Math.log(pk))*(y1-y0);
+  const d=o.map((v,i)=>`${i?'L':'M'}${X(i).toFixed(1)} ${Y(v).toFixed(1)}`).join(' ');
+  const pi=o.indexOf(pk);
+  document.getElementById('orbit').innerHTML=
+   `<path d="${d}" fill="none" stroke="#12100d" stroke-width="2.4" stroke-linejoin="round"/>`+
+   `<line x1="${X(pi)}" x2="${X(pi)}" y1="${Y(pk)}" y2="${y1+10}" stroke="#12100d" stroke-opacity=".3" stroke-dasharray="3 5"/>`+
+   `<circle cx="${X(pi)}" cy="${Y(pk)}" r="9" fill="#ffb300" stroke="#12100d" stroke-width="2"/>`+
+   `<circle cx="${X(o.length-1)}" cy="${Y(1)}" r="8" fill="#2a39e6"/>`+
+   `<text x="${X(pi)+16}" y="${Y(pk)+6}" font-family="Geist Mono,monospace" font-size="17" font-weight="500" fill="#12100d">9,232</text>`;
+</script>
+</body></html>

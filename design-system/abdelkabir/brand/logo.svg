@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" fill="none">
+  <title>ak</title>
+  <g stroke="#12100d" stroke-width="9" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="31" cy="62" r="15.5"/>
+    <path d="M46.5 46.5V77.5"/>
+    <path d="M63 27V77.5"/>
+    <path d="M82 48 63 63 83 77.5"/>
+  </g>
+  <circle cx="63" cy="24" r="8" fill="#ffb300"/>
+</svg>

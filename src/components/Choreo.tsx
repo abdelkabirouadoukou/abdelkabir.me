@@ -1,5 +1,6 @@
 import { useEffect, useRef } from "react";
 import { ORBIT, PEAK, SECTIONS, STEPS_TOTAL, fmt } from "../lib/collatz";
+import { SITE } from "../lib/site";
 
 /**
  * Choreo — the one island that owns scroll.
@@ -58,14 +59,21 @@ export function Choreo() {
       disposers.push(() => window.removeEventListener(t, fn as EventListener));
     };
 
-    /* ---------------- document metadata (x's shell has a fixed <title>) ---------------- */
-    document.title = "Abdelkabir Ouadoukou — solo developer, framework builder, Marrakesh";
-    if (!document.querySelector('meta[name="description"]')) {
-      const m = document.createElement("meta");
-      m.name = "description";
-      m.content = "Abdelkabir Ouadoukou, a solo developer and framework builder in Marrakesh. Projects, the @thexjs framework, math and security. The whole site is one Collatz orbit.";
-      document.head.appendChild(m);
-    }
+    /* The real <title>/meta/OG/JSON-LD are injected server-side (pages/_middleware.ts),
+       so crawlers see them. This only keeps the tab title right after client navigation. */
+    document.title = SITE.title;
+
+    /* ---------------- copy-to-clipboard (contact) ---------------- */
+    on("click", (e) => {
+      const btn = (e.target as Element | null)?.closest?.("[data-copy]") as HTMLButtonElement | null;
+      if (!btn) return;
+      const done = (ok: boolean) => {
+        const was = btn.dataset.label || (btn.dataset.label = btn.textContent || "copy");
+        btn.textContent = ok ? "copied ✓" : "press ⌘/Ctrl+C";
+        setTimeout(() => (btn.textContent = was), 1800);
+      };
+      navigator.clipboard?.writeText(btn.dataset.copy || "").then(() => done(true), () => done(false)) ?? done(false);
+    });
 
     /* ---------------- clock (Marrakesh) ---------------- */
     const clocks = Array.from(document.querySelectorAll<HTMLElement>(".js-clock"));

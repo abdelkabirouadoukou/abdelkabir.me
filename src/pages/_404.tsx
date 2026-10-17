@@ -1,6 +1,8 @@
 export default function NotFound() {
   return (
     <main className="lost">
+      {/* x's shell has a fixed <title>; fix the tab title for this page */}
+      <script dangerouslySetInnerHTML={{ __html: 'document.title="404 — not in this orbit · Abdelkabir Ouadoukou"' }} />
       <p className="eyebrow">n = 404 · not in this orbit</p>
       <b aria-hidden="true">404</b>
       <h2>

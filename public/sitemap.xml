@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+  <url>
+    <loc>https://www.abdelkabir.me/</loc>
+    <lastmod>2026-10-17</lastmod>
+    <image:image>
+      <image:loc>https://www.abdelkabir.me/og.png</image:loc>
+      <image:title>Abdelkabir Ouadoukou</image:title>
+      <image:caption>Abdelkabir Ouadoukou, “Searching for logic in a world of syntax errors”, next to the Collatz orbit of 27.</image:caption>
+    </image:image>
+  </url>
+</urlset>

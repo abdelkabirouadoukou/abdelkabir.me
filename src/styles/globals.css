@@ -135,7 +135,9 @@ h3 { font-size: 1rem; font-weight: 600; letter-spacing: 0; }
   pointer-events: none;
 }
 .nav a, .nav summary { pointer-events: auto; text-decoration: none; cursor: pointer; }
-.nav .mark { font: 800 22px/1 var(--f-display); letter-spacing: -0.06em; text-transform: none; }
+.nav .mark { display: inline-flex; align-items: center; line-height: 0; }
+.nav .mark svg { width: 38px; height: auto; overflow: visible; transition: transform 0.5s var(--ease); }
+.nav .mark:hover svg, .nav .mark:focus-visible svg { transform: rotate(-8deg) scale(1.06); }
 .nav-links { display: none; gap: clamp(14px, 2vw, 30px); }
 .nav-links a { position: relative; padding: 6px 0; }
 .nav-links a::after {
@@ -260,6 +262,9 @@ h3 { font-size: 1rem; font-weight: 600; letter-spacing: 0; }
 @media (min-width: 900px) { .hero-row { grid-template-columns: 1.2fr 1fr; } }
 .tagline { font: italic 400 clamp(1.7rem, 3.3vw, 3.3rem) / 1.08 var(--f-serif); letter-spacing: -0.015em; max-width: 19ch; }
 .tagline u { text-decoration: underline wavy var(--blue); text-decoration-thickness: 2px; text-underline-offset: 0.18em; }
+.role { margin: clamp(12px, 1.6vw, 20px) 0 0; max-width: 46ch; font: 500 clamp(12.5px, 0.9vw, 14px) / 1.6 var(--f-mono); letter-spacing: 0.01em; text-wrap: pretty; }
+.role a { text-decoration-color: var(--blue); text-decoration-thickness: 2px; }
+.role a:hover { color: var(--blue); }
 .hero-side { display: grid; gap: 22px; justify-items: start; }
 @media (min-width: 900px) { .hero-side { justify-items: end; text-align: right; } .hero-side .actions { justify-content: flex-end; } }
 .hero-side .hint { font: 500 12px/1.5 var(--f-mono); letter-spacing: 0.04em; text-transform: uppercase; max-width: 34ch; }
@@ -345,6 +350,11 @@ h3 { font-size: 1rem; font-weight: 600; letter-spacing: 0; }
   .prow .pdesc { grid-column: auto; }
   .prow .pmeta { grid-column: auto; justify-content: flex-end; flex-direction: column; text-align: right; }
 }
+.more {
+  display: flex; justify-content: space-between; gap: 16px; padding: 22px 0 0; border-top: 1px solid var(--ink);
+  font: 500 12px var(--f-mono); letter-spacing: 0.06em; text-transform: uppercase; text-decoration: none;
+}
+.more:hover { color: var(--blue); }
 .prow .arrow { display: inline-block; transition: transform 0.5s var(--ease); }
 @media (hover: hover) {
   .pidx:hover .prow { color: color-mix(in oklab, var(--ink) 38%, transparent); }
@@ -428,7 +438,23 @@ h3 { font-size: 1rem; font-weight: 600; letter-spacing: 0; }
 }
 .foot .wrap { position: relative; z-index: 1; }
 .foot h2 { max-width: 11ch; margin-bottom: clamp(24px, 4vw, 48px); }
-.foot-grid { display: grid; gap: 28px; margin-top: clamp(56px, 9vw, 130px); padding-top: 22px; border-top: 1.5px solid var(--ink); grid-template-columns: repeat(2, 1fr); }
+.contact { margin-top: clamp(40px, 6vw, 88px); padding-top: 18px; border-top: 1.5px solid var(--ink); }
+.contact .eyebrow { margin-bottom: 10px; }
+.contact-row { display: flex; align-items: center; flex-wrap: wrap; gap: 12px 20px; }
+.contact .mail {
+  font: 700 clamp(1.5rem, 4.6vw, 4.2rem) / 1.05 var(--f-display); letter-spacing: -0.04em; font-variation-settings: "wdth" 90;
+  text-decoration: underline; text-decoration-thickness: 3px; text-underline-offset: 0.12em; text-decoration-color: color-mix(in oklab, var(--ink) 35%, transparent);
+  overflow-wrap: anywhere; transition: text-decoration-color 0.3s;
+}
+.contact .mail:hover { text-decoration-color: var(--ink); }
+.contact .copy {
+  padding: 9px 16px; border: 1.5px solid currentColor; border-radius: 99px; background: transparent; cursor: pointer;
+  font: 500 12px/1 var(--f-mono); letter-spacing: 0.06em; text-transform: uppercase;
+  transition: background-color 0.3s var(--ease), color 0.3s var(--ease);
+}
+.contact .copy:hover { background: var(--ink); color: var(--saffron); border-color: var(--ink); }
+.contact-note { margin: 14px 0 0; font: 500 12px/1.6 var(--f-mono); letter-spacing: 0.04em; max-width: 56ch; }
+.foot-grid { display: grid; gap: 28px; margin-top: clamp(40px, 6vw, 88px); padding-top: 22px; border-top: 1.5px solid var(--ink); grid-template-columns: repeat(2, 1fr); }
 @media (min-width: 800px) { .foot-grid { grid-template-columns: 1fr 1fr 1.4fr; } }
 .foot-grid h3 { font: 500 12px var(--f-mono); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 12px; opacity: 0.7; }
 .foot-grid ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 6px; }

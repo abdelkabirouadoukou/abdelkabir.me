@@ -7,7 +7,7 @@ Product type: **Developer portfolio / framework author**, creative-leaning.
 ## 1. Pattern
 Single long-scroll narrative with one spine. Sections are *steps of one Collatz orbit* (n = 27).
 Order: Hero → About → Building (@thexjs) → Projects → Skills → Math → Security → Footer.
-CTA: hero (projects / GitHub) and footer (GitHub). No forms, no fake email.
+CTA: hero (projects / GitHub) and footer ("Say hello" → mailto, GitHub, @thexjs). Contact is a real address with a copy button (config: `src/lib/site.ts`). No forms.
 
 ## 2. Style
 **Editorial brutalism + Moroccan palette.** Huge variable type, hard colour blocks that alternate
@@ -51,3 +51,11 @@ Scale: fluid clamp(); hero name fitted by JS so the widest variable state never 
 - [x] Decorative layers `aria-hidden`; split-text headings keep an `aria-label`
 - [x] 375 / 768 / 1024 / 1440 layouts considered
 - [x] Cursor is additive (native cursor stays)
+
+## 6. Brand mark
+`brand/logo.svg` / `public/favicon.svg`: a geometric lowercase **a** + **k** on 9-unit round strokes. The k's ascender ends in a
+saffron ball: the *peak* of the hailstone (the same saffron peak marker used on the orbit plot).
+- On sand: ink strokes. On ink (favicon, app icons): sand strokes. The ball is always saffron.
+- In the nav the mark uses `currentColor` (see `src/components/Logo.tsx`) so it inherits the difference-blend colour.
+- Keep clear space of at least one stroke width (9 units) around the mark. Don't recolour the ball, don't outline the letters.
+- Share image (`public/og.png`) is rendered from `brand/og.html`.

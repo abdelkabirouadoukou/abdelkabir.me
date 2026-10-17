@@ -28,9 +28,6 @@ const PROJECTS: Project[] = [
   { name: "nth-roots-visualizer", href: "https://github.com/abdelkabirouadoukou/nth-roots-visualizer", lang: "TypeScript",
     desc: "Visualize n-th roots of unity and modular multiplication patterns on the unit circle. Built with Next.js & TypeScript. Math meets art!",
     tags: "#katex · #mathematics · #nextjs · #nth-root" },
-  { name: "20-beginner-py-projects", href: "https://github.com/abdelkabirouadoukou/20-beginner-py-projects", lang: "Python",
-    desc: "A collection of 20 beginner-friendly Python projects to learn programming through hands-on practice. From basic calculators to web scrapers, perfect for new developers.",
-    tags: "#beginner-friendly · #coding-bootcamp · #coding-practice · #educational" },
 ];
 
 /* ---------- specimens ---------- */
@@ -131,19 +128,6 @@ const SPECIMENS: Draw[] = [
     g.globalAlpha = 1; g.fillStyle = c.ink;
     for (let k = 0; k < n; k++) { const a = at(k); g.beginPath(); g.arc(a[0], a[1], 2, 0, TAU); g.fill(); }
     g.font = "500 12px ui-monospace, Menlo, monospace"; g.fillStyle = c.ink; g.fillText(`k → ${m}k mod ${n}`, 14, h - 14);
-  },
-  /* 6 · twenty little projects ticking off */
-  (g, w, h, t, c) => {
-    const cols = 5, rows = 4, gap = 10, cw = (w - 40 - gap * (cols - 1)) / cols, ch = (h - 56 - gap * (rows - 1)) / rows;
-    const idx = Math.floor(t / 170) % 26;
-    for (let i = 0; i < 20; i++) {
-      const x = 20 + (i % cols) * (cw + gap), y = 30 + Math.floor(i / cols) * (ch + gap);
-      const done = i < idx, cur = i === idx;
-      g.fillStyle = cur ? c.saffron : done ? c.blue : c.ink; g.globalAlpha = cur || done ? 1 : 0.12;
-      rr(g, x, y, cw, ch, 8); g.fill();
-      if (done) { g.globalAlpha = 1; g.strokeStyle = c.paper; g.lineWidth = 2.2; g.beginPath(); g.moveTo(x + cw / 2 - 7, y + ch / 2); g.lineTo(x + cw / 2 - 2, y + ch / 2 + 5); g.lineTo(x + cw / 2 + 8, y + ch / 2 - 6); g.stroke(); }
-    }
-    g.globalAlpha = 1;
   },
 ];
 
