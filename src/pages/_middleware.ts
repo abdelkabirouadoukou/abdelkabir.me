@@ -1,6 +1,6 @@
 import type { MiddlewareFn } from "@thexjs/core";
 import { escapeHtml } from "@thexjs/core";
-import { SITE } from "../lib/site";
+import { SITE, pageFor } from "../lib/site";
 import { headTags } from "../lib/head";
 
 /**
@@ -20,7 +20,7 @@ export const middleware: MiddlewareFn = async (ctx, next) => {
 
   const { pathname } = new URL(ctx.request.url);
   const out = html
-    .replace(/<title>[\s\S]*?<\/title>/, `<title>${escapeHtml(SITE.title)}</title>`)
+    .replace(/<title>[\s\S]*?<\/title>/, `<title>${escapeHtml(pageFor(pathname)?.title ?? SITE.title)}</title>`)
     .replace("</head>", `${headTags(pathname)}\n  </head>`);
 
   const headers = new Headers(res.headers);

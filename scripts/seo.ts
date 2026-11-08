@@ -8,7 +8,7 @@
  */
 import { mkdirSync, writeFileSync } from "node:fs";
 import { dirname, join } from "node:path";
-import { SITE, absolute } from "../src/lib/site";
+import { SITE, PAGES, absolute } from "../src/lib/site";
 
 const root = join(import.meta.dir, "..");
 const out = (rel: string, body: string) => {
@@ -31,7 +31,7 @@ const lastmod = (() => {
 
 const x = (s: string) => s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
 
-/* ---- sitemap.xml: one page, plus its share image ---- */
+/* ---- sitemap.xml: home (with its share image) plus every entry in PAGES ---- */
 out(
   "sitemap.xml",
   `<?xml version="1.0" encoding="UTF-8"?>
@@ -45,6 +45,9 @@ out(
       <image:caption>${x(SITE.ogImageAlt)}</image:caption>
     </image:image>
   </url>
+${Object.keys(PAGES)
+  .map((p) => `  <url>\n    <loc>${x(absolute(p))}</loc>\n    <lastmod>${lastmod}</lastmod>\n  </url>`)
+  .join("\n")}
 </urlset>
 `,
 );

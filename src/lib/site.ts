@@ -28,4 +28,16 @@ export const SITE = {
   knowsAbout: ["TypeScript", "React", "Bun", "Python", "Linux security", "Collatz conjecture"],
 } as const;
 
+/** Per-page <title>/description for routes other than "/". Used by _middleware, head.ts and scripts/seo.ts. */
+export const PAGES: Record<string, { title: string; description: string; type: "case-study" }> = {
+  "/work/si-loop": {
+    title: "SI-Loop — Case study · Abdelkabir Ouadoukou",
+    description:
+      "SI-Loop: a closed-loop kernel for recursive self-improvement in software agents. Git-worktree isolation, AST sanitization, and a calibrated paired non-inferiority gate with a measured false-accept rate.",
+    type: "case-study",
+  },
+};
+
+export const pageFor = (pathname: string) => PAGES[pathname.replace(/\/+$/, "") || "/"];
+
 export const absolute = (path: string) => `${SITE.url}${path}`;

@@ -330,6 +330,7 @@ export default function Home() {
             <div>
               <h3>Work</h3>
               <ul>
+                <li><a href="/work/si-loop" data-no-nav>SI-Loop case study →</a></li>
                 <li><a href={X_REPO} target="_blank" rel="noopener noreferrer" data-no-nav>@thexjs ↗</a></li>
                 <li><a href="https://www.xymathprepa.com/" target="_blank" rel="noopener noreferrer" data-no-nav>xymathprepa.com ↗</a></li>
                 <li><a href={`${GH}/LiveGaffer`} target="_blank" rel="noopener noreferrer" data-no-nav>LiveGaffer ↗</a></li>

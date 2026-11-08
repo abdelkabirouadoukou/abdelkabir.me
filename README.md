@@ -44,6 +44,7 @@ This site is that orbit. Each section is a step of it, and the spine on the righ
 - **Collatz lab.** Pick any start number and plot its orbit on a log scale.
 - **Project index** with a generative canvas "specimen" per project on hover, instead of screenshots you'd have to host.
 - **Motion that explains things.** Lenis smooth scroll, GSAP + ScrollTrigger reveals, a scroll-velocity marquee, magnetic buttons, a variable-font name that reacts to the pointer. All of it respects `prefers-reduced-motion`.
+- **Case study: SI-Loop** at `/work/si-loop`. A plain, server-rendered write-up of the SI-Loop kernel (trust boundaries, AST sanitization, non-inferiority gate), linked from the project index.
 - **Contact** with a copy-to-clipboard button.
 - **Real SEO.** Server-rendered title, Open Graph / Twitter cards, JSON-LD, canonical URL, generated `sitemap.xml` and `robots.txt`, `security.txt`. See [SEO](#seo--metadata).
 
@@ -109,10 +110,11 @@ design-system/abdelkabir/        MASTER.md + brand/ (logo.svg, favicon.svg, og.h
 docs/screenshot.png              README hero image
 public/                          icons, og.png, manifest, generated sitemap/robots, styles.css
 src/
-  lib/site.ts                    site-wide metadata + contact (single source of truth)
+  lib/site.ts                    site-wide metadata + contact + per-page meta (PAGES)
   lib/head.ts                    <head> tags + JSON-LD builder
   lib/collatz.ts                 orbit maths, section ↔ step mapping
   pages/index.tsx                every section
+  pages/work/si-loop.tsx         SI-Loop case study (no islands, own .cs-* styles)
   pages/_middleware.ts           injects the real <head> server-side
   pages/_404.tsx                 "this number never reaches 1"
   layouts/main.tsx               fonts + skip link

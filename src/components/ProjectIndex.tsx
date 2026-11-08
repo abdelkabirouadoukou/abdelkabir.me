@@ -7,9 +7,12 @@ import { useEffect, useRef } from "react";
  * project — instead of a screenshot you'd have to host.
  */
 
-type Project = { name: string; href: string; badge?: string; desc: string; tags: string; lang: string };
+type Project = { name: string; href: string; badge?: string; desc: string; tags: string; lang: string; internal?: boolean };
 
 const PROJECTS: Project[] = [
+  { name: "SI-Loop", href: "/work/si-loop", badge: "case study", lang: "Python", internal: true,
+    desc: "Closed-loop kernel for recursive self-improvement in software agents: git-worktree isolation, AST sanitization, and a calibrated paired non-inferiority gate with a measured false-accept rate.",
+    tags: "git worktrees · AST validation · Shapley credit · A/A calibration" },
   { name: "xymathprepa.com", href: "https://www.xymathprepa.com/", badge: "client project", lang: "TypeScript",
     desc: "Online math-training platform for CPGE students I built for a client: video lessons, corrected exercises, and progress tracking that syncs with WhatsApp.",
     tags: "Next.js · Tailwind CSS · Supabase · shadcn/ui" },
@@ -41,6 +44,38 @@ const rr = (g: CanvasRenderingContext2D, x: number, y: number, w: number, h: num
 };
 
 const SPECIMENS: Draw[] = [
+  /* 0 · sandboxed candidate branches: most are rolled back, one is promoted */
+  (g, w, h, t, c) => {
+    const y0 = h * 0.5, x0 = 22, x1 = w - 22, lanes = 5, span = (x1 - x0) / lanes;
+    g.lineCap = "round"; g.lineJoin = "round";
+    g.strokeStyle = c.ink; g.globalAlpha = 0.9; g.lineWidth = 2.4;
+    g.beginPath(); g.moveTo(x0, y0); g.lineTo(x1, y0); g.stroke();
+    for (let i = 0; i < lanes; i++) {
+      const fx = x0 + span * (i + 0.12), tx = x0 + span * (i + 0.88), ok = i === 2;
+      const dy = (i % 2 ? 1 : -1) * (36 + (i % 3) * 14);
+      const pts: [number, number][] = [[fx, y0], [fx + 16, y0 + dy], [tx - 16, y0 + dy]];
+      if (ok) pts.push([tx, y0]);
+      g.strokeStyle = ok ? c.blue : c.ink; g.globalAlpha = ok ? 1 : 0.32; g.lineWidth = ok ? 2.6 : 1.6;
+      g.beginPath(); pts.forEach(([x, y], k) => (k ? g.lineTo(x, y) : g.moveTo(x, y))); g.stroke();
+      const end = pts[pts.length - 1];
+      if (!ok) {
+        g.globalAlpha = 0.7; g.lineWidth = 2; g.beginPath();
+        g.moveTo(end[0] - 5, end[1] - 5); g.lineTo(end[0] + 5, end[1] + 5);
+        g.moveTo(end[0] + 5, end[1] - 5); g.lineTo(end[0] - 5, end[1] + 5); g.stroke();
+      } else {
+        g.globalAlpha = 1; g.fillStyle = c.saffron; g.strokeStyle = c.ink; g.lineWidth = 1.5;
+        g.beginPath(); g.arc(tx, y0, 6, 0, TAU); g.fill(); g.stroke();
+      }
+      const lens = pts.slice(1).map((q, k) => Math.hypot(q[0] - pts[k][0], q[1] - pts[k][1]));
+      let d = (((t / 1700 + i * 0.29) % 1)) * lens.reduce((a, b) => a + b, 0), k = 0;
+      while (k < lens.length - 1 && d > lens[k]) { d -= lens[k]; k++; }
+      const f = Math.min(1, d / lens[k]), a = pts[k], b = pts[k + 1];
+      g.globalAlpha = 1; g.fillStyle = ok ? c.blue : c.ink;
+      g.beginPath(); g.arc(a[0] + (b[0] - a[0]) * f, a[1] + (b[1] - a[1]) * f, 3.4, 0, TAU); g.fill();
+    }
+    g.globalAlpha = 1; g.font = "500 12px ui-monospace, Menlo, monospace"; g.fillStyle = c.ink; g.textBaseline = "alphabetic";
+    g.fillText("1 promoted · 4 rolled back", 14, h - 14);
+  },
   /* 0 · lessons with synced progress */
   (g, w, h, t, c) => {
     for (let i = 0; i < 5; i++) {
@@ -187,7 +222,7 @@ export function ProjectIndex() {
   return (
     <div className="pidx" ref={list}>
       {PROJECTS.map((p, i) => (
-        <a className="prow" key={p.name} href={p.href} target="_blank" rel="noopener noreferrer" data-cursor="open ↗" data-no-nav data-reveal>
+        <a className="prow" key={p.name} href={p.href} {...(p.internal ? {} : { target: "_blank", rel: "noopener noreferrer" })} data-cursor={p.internal ? "read →" : "open ↗"} data-no-nav data-reveal>
           <span className="i">{String(i + 1).padStart(2, "0")}</span>
           <div>
             <span className="pname">{p.name}</span>
@@ -199,7 +234,7 @@ export function ProjectIndex() {
           </div>
           <div className="pmeta">
             <span>{p.lang}</span>
-            <span className="arrow" aria-hidden="true">↗</span>
+            <span className="arrow" aria-hidden="true">{p.internal ? "→" : "↗"}</span>
           </div>
         </a>
       ))}

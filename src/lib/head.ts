@@ -1,5 +1,5 @@
 import { escapeHtml } from "@thexjs/core";
-import { SITE, absolute } from "./site";
+import { SITE, absolute, pageFor } from "./site";
 
 /**
  * x's HTML shell has a fixed <title>x app</title> and no per-page head API, so
@@ -15,7 +15,7 @@ const meta = (attr: "name" | "property", key: string, content: string) =>
 const jsonLd = (data: unknown) =>
   JSON.stringify(data).replace(/</g, "\\u003c").replace(/>/g, "\\u003e").replace(/&/g, "\\u0026");
 
-export function structuredData() {
+export function structuredData(pathname = "/") {
   const personId = `${SITE.url}/#person`;
   return {
     "@context": "https://schema.org",
@@ -43,6 +43,21 @@ export function structuredData() {
         author: { "@id": personId },
         publisher: { "@id": personId },
       },
+      ...(pageFor(pathname)
+        ? [
+            {
+              "@type": "TechArticle",
+              "@id": `${absolute(pathname)}#article`,
+              url: absolute(pathname),
+              headline: pageFor(pathname)!.title,
+              description: pageFor(pathname)!.description,
+              inLanguage: "en",
+              author: { "@id": personId },
+              publisher: { "@id": personId },
+              isPartOf: { "@id": `${SITE.url}/#website` },
+            },
+          ]
+        : []),
     ],
   };
 }
@@ -51,9 +66,12 @@ export function structuredData() {
 export function headTags(pathname: string): string {
   const canonical = absolute(pathname === "/" ? "/" : pathname.replace(/\/+$/, ""));
   const image = absolute(SITE.ogImage);
+  const page = pageFor(pathname);
+  const title = page?.title ?? SITE.title;
+  const description = page?.description ?? SITE.description;
 
   return [
-    meta("name", "description", SITE.description),
+    meta("name", "description", description),
     meta("name", "author", SITE.name),
     meta("name", "robots", "index, follow, max-image-preview:large"),
     meta("name", "theme-color", SITE.themeColor),
@@ -68,11 +86,11 @@ export function headTags(pathname: string): string {
     `<link rel="manifest" href="/site.webmanifest" />`,
 
     // Open Graph
-    meta("property", "og:type", "website"),
+    meta("property", "og:type", page ? "article" : "website"),
     meta("property", "og:site_name", SITE.name),
     meta("property", "og:locale", SITE.locale),
-    meta("property", "og:title", SITE.title),
-    meta("property", "og:description", SITE.description),
+    meta("property", "og:title", title),
+    meta("property", "og:description", description),
     meta("property", "og:url", canonical),
     meta("property", "og:image", image),
     meta("property", "og:image:type", "image/png"),
@@ -82,12 +100,12 @@ export function headTags(pathname: string): string {
 
     // Twitter / X
     meta("name", "twitter:card", "summary_large_image"),
-    meta("name", "twitter:title", SITE.title),
-    meta("name", "twitter:description", SITE.description),
+    meta("name", "twitter:title", title),
+    meta("name", "twitter:description", description),
     meta("name", "twitter:image", image),
     meta("name", "twitter:image:alt", SITE.ogImageAlt),
 
-    `<script type="application/ld+json">${jsonLd(structuredData())}</script>`,
+    `<script type="application/ld+json">${jsonLd(structuredData(pathname))}</script>`,
   ]
     .map((t) => `    ${t}`)
     .join("\n");
