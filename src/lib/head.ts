@@ -74,7 +74,7 @@ export function headTags(pathname: string): string {
     meta("name", "description", description),
     meta("name", "author", SITE.name),
     meta("name", "robots", "index, follow, max-image-preview:large"),
-    meta("name", "theme-color", SITE.themeColor),
+    meta("name", "theme-color", page?.themeColor ?? SITE.themeColor),
     `<link rel="canonical" href="${e(canonical)}" />`,
     `<link rel="me" href="${e(SITE.github)}" />`,
 

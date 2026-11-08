@@ -44,7 +44,7 @@ This site is that orbit. Each section is a step of it, and the spine on the righ
 - **Collatz lab.** Pick any start number and plot its orbit on a log scale.
 - **Project index** with a generative canvas "specimen" per project on hover, instead of screenshots you'd have to host.
 - **Motion that explains things.** Lenis smooth scroll, GSAP + ScrollTrigger reveals, a scroll-velocity marquee, magnetic buttons, a variable-font name that reacts to the pointer. All of it respects `prefers-reduced-motion`.
-- **Case study: SI-Loop** at `/work/si-loop`. A plain, server-rendered write-up of the SI-Loop kernel (trust boundaries, AST sanitization, non-inferiority gate), linked from the project index.
+- **Case study: SI-Loop** at `/work/si-loop`. A server-rendered write-up of the SI-Loop kernel (trust boundaries, AST sanitization, non-inferiority gate) in a dark indigo theme scoped under `.cs`. Equations are native MathML (`src/components/Eq.tsx`), so no KaTeX and no CSP change; in-page anchors use CSS smooth scrolling. Study 1 result figures live in `public/results/`.
 - **Contact** with a copy-to-clipboard button.
 - **Real SEO.** Server-rendered title, Open Graph / Twitter cards, JSON-LD, canonical URL, generated `sitemap.xml` and `robots.txt`, `security.txt`. See [SEO](#seo--metadata).
 
@@ -115,6 +115,8 @@ src/
   lib/collatz.ts                 orbit maths, section ↔ step mapping
   pages/index.tsx                every section
   pages/work/si-loop.tsx         SI-Loop case study (no islands, own .cs-* styles)
+  components/Eq.tsx              MathML equation helpers (Eq, V, I, Abs, Delta)
+  types/mathml.d.ts              JSX typings for the MathML elements
   pages/_middleware.ts           injects the real <head> server-side
   pages/_404.tsx                 "this number never reaches 1"
   layouts/main.tsx               fonts + skip link
