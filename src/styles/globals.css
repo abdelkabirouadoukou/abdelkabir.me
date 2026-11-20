@@ -781,6 +781,19 @@ body:has(.cs) { background: var(--sand); }
 .cs-foot-row a { text-decoration: none; }
 .cs-foot-row a:hover { text-decoration: underline; text-decoration-thickness: 2px; }
 
+/* An SVG scaled to a phone shrinks its labels with it: at 375px the chart text
+   would land at ~4px. Below the breakpoint the figure scrolls inside its own
+   plate instead, like the tables, so the body never scrolls sideways. */
+@media (max-width: 860px) {
+  .fig-plate { overflow-x: auto; }
+  .fig-plate svg { min-width: 660px; }
+}
+/* the architecture diagram is denser, so it needs the wider floor sooner */
+@media (max-width: 1000px) {
+  .arch { overflow-x: auto; }
+  .arch svg { min-width: 900px; }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .cs-progress { display: none; }
   .cs *, .cs *::before { transition: none !important; animation: none !important; }

@@ -32,7 +32,7 @@ export function Calibration() {
         <span><i className="k1" />single stage</span>
         <span><i className="k2" />two stage (default)</span>
       </p>
-      <svg viewBox="0 0 720 286" role="img"
+      <svg viewBox="0 0 720 296" role="img"
         aria-label="Line chart: false-accept rate on null patches against the posterior threshold tau. Single stage falls from 17.75% at 0.80 to 0.8% at 0.99 and crosses the 5% target between 0.90 and 0.95. The two-stage gate starts at 3.15% and is already under the target at every threshold, reaching 0.9% at the default 0.95.">
         {[0, 5, 10, 15].map((g) => (
           <g key={g}>
@@ -59,13 +59,13 @@ export function Calibration() {
 
         {/* the default threshold is the story: label that pair only */}
         <text className="viz-value" x={px(2)} y={py(SINGLE[2]) - 14} textAnchor="middle">4.35%</text>
-        <text className="viz-value" x={px(2)} y={py(TWOSTAGE[2]) + 22} textAnchor="middle">0.9%</text>
+        <text className="viz-value" x={px(2)} y={py(TWOSTAGE[2]) - 13} textAnchor="middle">0.9%</text>
 
         <line className="viz-axis" x1={x0} x2={x1} y1={y1} y2={y1} />
         {TAUS.map((t, i) => (
           <text key={t} className="viz-label" x={px(i)} y={y1 + 22} textAnchor="middle">{t}</text>
         ))}
-        <text className="viz-title" x={x0} y={276}>τ · p_improve_min</text>
+        <text className="viz-title" x={x0} y={288}>τ · p_improve_min</text>
       </svg>
     </div>
   );
@@ -193,7 +193,7 @@ export function FdrLevels() {
   const path = FDR.map(([, , l], i) => `${i ? "L" : "M"}${px(i)} ${py(l)}`).join(" ");
 
   return (
-    <svg viewBox="0 0 720 272" role="img"
+    <svg viewBox="0 0 720 288" role="img"
       aria-label="Line chart on a logarithmic scale of the level the enforced e-LOND monitor required at each of the seven correctness-path tests in the Study 4 pilot: 0.0304, 0.0304, 0.0076, 0.0034, 0.0012, 0.00084 and 0.00062. No test cleared its level, so none of the seven was accepted.">
       {[0.1, 0.01, 0.001].map((g) => (
         <g key={g}>
@@ -207,18 +207,19 @@ export function FdrLevels() {
           <circle className="viz-1" cx={px(i)} cy={py(l)} r={5}>
             <title>{`test ${t}: p_better ${p}, required level ${l}, not a discovery`}</title>
           </circle>
-          <text className="viz-label" x={px(i)} y={y1 + 22} textAnchor="middle">{t}</text>
+          <text className="viz-label" x={px(i)} y={y1 + 34} textAnchor="middle">{t}</text>
         </g>
       ))}
       <text className="viz-value" x={px(0) + 12} y={py(0.0304) - 12}>0.0304</text>
       <text className="viz-value" x={px(6)} y={py(0.00062) + 24} textAnchor="middle">0.00062</text>
+      {/* callout points back into the plot: to the right it would run past the viewBox */}
       <g>
-        <line className="viz-rule" x1={px(6)} x2={px(6) + 46} y1={py(0.00062)} y2={py(0.0024)} />
-        <text className="viz-value" x={px(6) + 52} y={py(0.0024) - 4}>p_better = 0.9999</text>
-        <text className="viz-label" x={px(6) + 52} y={py(0.0024) + 13}>still rejected</text>
+        <line className="viz-rule" x1={px(6)} x2={px(6) - 54} y1={py(0.00062)} y2={py(0.006)} />
+        <text className="viz-value" x={px(6) - 60} y={py(0.006) - 4} textAnchor="end">p_better = 0.9999</text>
+        <text className="viz-label" x={px(6) - 60} y={py(0.006) + 13} textAnchor="end">still rejected</text>
       </g>
       <line className="viz-axis" x1={x0} x2={x1} y1={y1} y2={y1} />
-      <text className="viz-title" x={x0} y={262}>correctness-path test · required level (log)</text>
+      <text className="viz-title" x={x0} y={276}>correctness-path test · required level (log)</text>
     </svg>
   );
 }
