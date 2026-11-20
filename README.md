@@ -7,7 +7,7 @@
 **My portfolio, and the whole page is one [Collatz](https://en.wikipedia.org/wiki/Collatz_conjecture) orbit.**<br />
 Searching for logic in a world of syntax errors.
 
-[**abdelkabir.me**](https://abdelkabir.me) · [GitHub](https://github.com/abdelkabirouadoukou) · [@thexjs](https://github.com/abdelkabirouadoukou/x)
+[**abdelkabir.me**](https://abdelkabir.me) · [GitHub](https://github.com/abdelkabirouadoukou) · [@thexjs](https://github.com/thexjs/x)
 
 ![Bun](https://img.shields.io/badge/Bun-runtime-000?logo=bun&logoColor=fff)
 ![React](https://img.shields.io/badge/React_19-islands-149eca?logo=react&logoColor=fff)
@@ -40,7 +40,7 @@ This site is that orbit. Each section is a step of it, and the spine on the righ
 ## What's in it
 
 - **Hailstone spine.** A live readout of the current *n*, with the orbit drawn as you scroll. It uses `mix-blend-mode: difference`, so it stays readable on every colour block.
-- **@thexjs showcase.** A pinned horizontal rail of the eight packages of my own framework, which this site is built on.
+- **@thexjs showcase.** A pinned horizontal rail of the nine packages of my own framework, which this site is built on.
 - **Collatz lab.** Pick any start number and plot its orbit on a log scale.
 - **Project index** with a generative canvas "specimen" per project on hover, instead of screenshots you'd have to host.
 - **Motion that explains things.** Lenis smooth scroll, GSAP + ScrollTrigger reveals, a scroll-velocity marquee, magnetic buttons, a variable-font name that reacts to the pointer. All of it respects `prefers-reduced-motion`.
@@ -52,7 +52,7 @@ This site is that orbit. Each section is a step of it, and the spine on the righ
 
 | | |
 |---|---|
-| Framework | [**@thexjs**](https://github.com/abdelkabirouadoukou/x), my own: Bun + React 19 SSR with islands |
+| Framework | [**@thexjs**](https://github.com/thexjs/x), my own: Bun + React 19 SSR with islands |
 | Motion | [Lenis](https://lenis.darkroom.engineering) + [GSAP](https://gsap.com) / ScrollTrigger |
 | Styling | Plain CSS (`src/styles/globals.css`), compiled through Tailwind's CLI |
 | Type | Bricolage Grotesque, Instrument Serif, Geist Mono |

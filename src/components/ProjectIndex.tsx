@@ -11,12 +11,12 @@ type Project = { name: string; href: string; badge?: string; desc: string; tags:
 
 const PROJECTS: Project[] = [
   { name: "SI-Loop", href: "/work/si-loop", badge: "case study", lang: "Python", internal: true,
-    desc: "Closed-loop kernel for recursive self-improvement in software agents: git-worktree isolation, AST sanitization, and a calibrated paired non-inferiority gate with a measured false-accept rate.",
-    tags: "git worktrees · AST validation · Shapley credit · A/A calibration" },
+    desc: "Guarded recursive self-improvement for code agents: worktree isolation, a sealed verifier, and a two-stage gate calibrated to a 0.9% false-accept rate. Four pre-registered studies, each one disclosing a defect in the last.",
+    tags: "sealed verifier · two-stage gate · e-LOND FDR · live LLM runs" },
   { name: "xymathprepa.com", href: "https://www.xymathprepa.com/", badge: "client project", lang: "TypeScript",
     desc: "Online math-training platform for CPGE students I built for a client: video lessons, corrected exercises, and progress tracking that syncs with WhatsApp.",
     tags: "Next.js · Tailwind CSS · Supabase · shadcn/ui" },
-  { name: "x", href: "https://github.com/abdelkabirouadoukou/x", badge: "pinned", lang: "TypeScript",
+  { name: "x", href: "https://github.com/thexjs/x", badge: "pinned", lang: "TypeScript",
     desc: "A full-stack React framework. Astro-style static-first frontend with islands, Next.js-style backend (file-based API/server routes, SSR), running on Bun. Bun.serve() and Bun's own bundler are the dev server and build tool, no separate bundler stack.",
     tags: "#astro · #build-tool · #bun · #cli" },
   { name: "LiveGaffer", href: "https://github.com/abdelkabirouadoukou/LiveGaffer", badge: "pinned", lang: "Python",

@@ -33,15 +33,16 @@ function Head({ id, no, title, children }: { id: (typeof SECTIONS)[number]["id"]
   );
 }
 
-const PACKAGES = [
-  { name: "core", desc: "Runtime: file-based routing, SSR/SSG, islands, server functions.", code: "bun add @thexjs/core" },
+const PACKAGES: { name: string; desc: string; code: string; scoped?: boolean }[] = [
+  { name: "core", desc: "Runtime: file-based routing, SSR/SSG/ISR, islands, server functions, typed data layer.", code: "bun add @thexjs/core" },
   { name: "cli", desc: "One CLI, three commands: dev, build, start.", code: "x dev · x build · x start" },
-  { name: "auth", desc: "Credentials + OAuth2, sessions, CSRF. Passwords hashed with Argon2.", code: "bun add @thexjs/auth" },
+  { name: "auth", desc: "Credentials + OAuth2/GitHub, sessions, CSRF. Passwords hashed with Argon2.", code: "bun add @thexjs/auth" },
   { name: "env", desc: "Type-safe environment validation. Server-only keys never reach the client bundle.", code: "bun add @thexjs/env" },
   { name: "hooks", desc: "SSR-safe React hooks: useDebounce, useMediaQuery, useServerAction and friends.", code: "bun add @thexjs/hooks" },
   { name: "adapter-vercel", desc: "Vercel Build Output API v3.", code: "x build --adapter vercel" },
+  { name: "adapter-node", desc: "Plain Node deploy target for anywhere that isn't Vercel.", code: "x build --adapter node" },
   { name: "mcp", desc: "An MCP server that grounds AI coding agents in X's real conventions, not Next.js guesses.", code: "bunx @thexjs/mcp" },
-  { name: "create-thexjs-app", desc: "Project scaffolder: tailwind, auth, content, hooks, shadcn.", code: "bun create thexjs-app@latest" },
+  { name: "create-thexjs-app", scoped: false, desc: "Project scaffolder: tailwind, auth, content, hooks, shadcn.", code: "bun create thexjs-app@latest" },
 ];
 
 const SKILLS = [
@@ -127,7 +128,7 @@ export default function Home() {
             </div>
 
             <div className="specs" data-intro style={v(5)}>
-              <div className="spec"><b data-count="8">8</b><span>@thexjs packages</span></div>
+              <div className="spec"><b data-count="9">9</b><span>@thexjs packages</span></div>
               <div className="spec"><b data-count="1">1</b><span>client platform live</span></div>
               <div className="spec"><b data-count="1">1</b><span>kernel CVE written up</span></div>
               <div className="spec"><b data-count={String(STEPS_TOTAL)}>{STEPS_TOTAL}</b><span>steps from 27 to 1</span></div>
@@ -162,11 +163,18 @@ export default function Home() {
           <div className="wrap">
             <Head id="building" no="02" title={<>@thexjs, <em>from scratch.</em></>} />
             <div className="build-top">
-              <p className="lead" data-reveal>
-                A meta-fullstack framework, the kind you'd usually compare to Next.js or Remix rather than call a simple
-                SSR wrapper. I built it myself on Bun and React SSR, shipped as a monorepo, and I run it in production
-                on my own projects.
-              </p>
+              <div data-reveal>
+                <p className="lead">
+                  A meta-fullstack framework, the kind you'd usually compare to Next.js or Remix rather than call a simple
+                  SSR wrapper. I built it myself on Bun and React SSR, shipped as a monorepo, and I run it in production
+                  on my own projects.
+                </p>
+                <p className="prose build-note">
+                  Started July 2026. It's past the side-project stage now: 9 published packages, 427 commits, ~820 tests
+                  across the monorepo, and outside contributors filing issues I actually ship fixes for. The tracker runs
+                  in the open, with labelled <i>help wanted</i> issues and an open call for a second maintainer.
+                </p>
+              </div>
               <div className="chips" data-reveal>
                 <span className="chip">Bun</span><span className="chip">React SSR</span>
                 <span className="chip">monorepo</span><span className="chip">islands</span>
@@ -181,7 +189,7 @@ export default function Home() {
                 <article className="pk-card" key={p.name}>
                   <div>
                     <span className="no">{String(i + 1).padStart(2, "0")} / {String(PACKAGES.length).padStart(2, "0")}</span>
-                    <h3><small>@thexjs/</small>{p.name}</h3>
+                    <h3>{p.scoped !== false && <small>@thexjs/</small>}{p.name}</h3>
                   </div>
                   <p>{p.desc}</p>
                   <code>{p.code}</code>
@@ -196,18 +204,19 @@ export default function Home() {
               <div>
                 <h3>Recently shipped</h3>
                 <ul>
-                  <li data-reveal>X 1.3: islands to disk, server-mode islands, and an image proxy</li>
-                  <li data-reveal>Fixed a dual-module-instance bug that was breaking island hydration</li>
-                  <li data-reveal>Vercel Build Output API v3 adapter</li>
-                  <li data-reveal>Security hardening: CSRF, env isolation, security headers</li>
-                  <li data-reveal>A full technical audit and docs sprint: roadmap, contributing guide, changelog, deploy docs</li>
+                  <li data-reveal>Secure by default: CSP, HSTS, CSRF origin checks, rate limiting (Redis-backed across replicas), Argon2 — plus a build-time scanner that fails the build if a server secret reaches a client bundle</li>
+                  <li data-reveal>A real data layer: typed SQLite/Postgres wrappers and a migration runner with checksummed drift detection and CLI rollback</li>
+                  <li data-reveal>Precompiled route matching — the router had been rebuilding a RegExp per route, per request</li>
+                  <li data-reveal>64-bit Bun.hash for island bundle ids (the old 32-bit hash could collide) and one batched Bun.build for adapter transpiles</li>
+                  <li data-reveal>Deduped the dev and prod request pipelines: ~90 lines of copied logic that had already drifted, now one path</li>
+                  <li data-reveal>CI with teeth: CodeQL, Trivy on deps and the image, Ubuntu + macOS matrix on real Postgres, and an SLO-gated load test that kills server processes mid-run to prove recovery</li>
                 </ul>
               </div>
               <div className="next">
                 <h3>Next up</h3>
                 <ul>
-                  <li data-reveal>Observability</li><li data-reveal>RBAC</li>
-                  <li data-reveal>Load testing</li><li data-reveal>Backup / disaster recovery</li>
+                  <li data-reveal>RBAC</li><li data-reveal>Backup / disaster recovery</li>
+                  <li data-reveal>Onboarding a second maintainer</li>
                 </ul>
               </div>
             </div>

@@ -16,7 +16,7 @@ export const SITE = {
 
   email: "abdelkabir.ouadoukou@gmail.com",
   github: "https://github.com/abdelkabirouadoukou",
-  xRepo: "https://github.com/abdelkabirouadoukou/x",
+  xRepo: "https://github.com/thexjs/x",
 
   city: "Marrakesh",
   country: "MA",
@@ -33,9 +33,9 @@ export const PAGES: Record<string, { title: string; description: string; type: "
   "/work/si-loop": {
     title: "SI-Loop — Case study · Abdelkabir Ouadoukou",
     description:
-      "SI-Loop: a closed-loop kernel for recursive self-improvement in software agents. Git-worktree isolation, AST sanitization, and a calibrated paired non-inferiority gate with a measured false-accept rate.",
+      "SI-Loop: guarded recursive self-improvement for code agents. Git-worktree isolation, a sealed verifier, a two-stage gate calibrated to a 0.9% false-accept rate, and online false-discovery control — across four pre-registered studies.",
     type: "case-study",
-    themeColor: "#07070c",
+    themeColor: "#eee6d3",
   },
 };
 
