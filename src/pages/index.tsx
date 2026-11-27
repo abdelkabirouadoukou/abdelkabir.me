@@ -170,7 +170,7 @@ export default function Home() {
                   on my own projects.
                 </p>
                 <p className="prose build-note">
-                  Started July 2026. It's past the side-project stage now: 9 published packages, 427 commits, ~820 tests
+                  Started July 2026. It's past the side-project stage now: 9 published packages, ~450 commits, ~865 tests
                   across the monorepo, and outside contributors filing issues I actually ship fixes for. The tracker runs
                   in the open, with labelled <i>help wanted</i> issues and an open call for a second maintainer.
                 </p>
